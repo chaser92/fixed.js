@@ -1,0 +1,15 @@
+{
+  "name": "fixed",
+  "version": "0.0.1",
+  "description": "Fixed.js is a library to solve dynamic typing pains in the ass.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/*"
+  },
+  "keywords": [
+    "contracts",
+    "types"
+  ],
+  "author": "Mariusz Kierski",
+  "license": "ISC"
+}

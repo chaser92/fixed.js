@@ -1,4 +1,4 @@
-global.Matching = {
+module.exports = {
 	String: require('./stringmatching'),
 	Array: require('./array'),
 	Any: require('./any'),

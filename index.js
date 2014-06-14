@@ -1,12 +1,16 @@
 global.VarArgs = function() { };
 
+function Predicate() {
+
+}
+
 function empty() { };
 
 function validateArgument(type, argument) {
 	if (type.validateArgument)
 		return type.validateArgument(type, argument);
 	return validateSimpleType(type, argument) ||
-		aergument instanceof type;
+		argument instanceof type;
 }
 
 function validateSimpleType(type, argument) {
@@ -44,6 +48,17 @@ function fixedFunction() {
 	};
 }
 
+function fixedOverloads() {
+	var argOverloads = arguments;
+	return function() {
+		for (var i=0; i < argOverloads.length; i++) {
+			if (matchArguments(argOverloads[i], arguments))
+				return argOverloads[i][argOverloads[i].length - 1].apply(this, arguments);
+		}
+		throw new TypeError();
+	}
+}
+
 function fixedObject() {
 
 }
@@ -55,9 +70,21 @@ module.exports = function() {
 		return empty;
 
 	// function? this shall be a contract!
-	else if (arguments[0] instanceof Function) 
+	else if (arguments[0] instanceof Function)
 		return fixedFunction.apply(this, arguments);
+
+	else if (arguments[0] instanceof Array)
+		return fixedOverloads.apply(this, arguments);
 
 	// so maybe let's fix an object?
 	return fixedObject.apply(this, arguments);
 };
+
+module.exports.createPredicate = function(predicate) {
+	predicate.validateArgument = predicate;
+	return pred;
+}
+
+module.exports.validateArgument = validateArgument;
+
+global.Matching = require('./predicates');

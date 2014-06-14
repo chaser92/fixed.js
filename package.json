@@ -4,12 +4,15 @@
   "description": "Fixed.js is a library to solve dynamic typing pains in the ass.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/*"
+    "test": "mocha tests/*"
   },
   "keywords": [
     "contracts",
     "types"
   ],
+  "devDependencies": {
+    "mocha": "*"
+  },
   "author": "Mariusz Kierski",
   "license": "ISC"
 }
